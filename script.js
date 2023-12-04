@@ -66,6 +66,8 @@ function displayData (weatherData) {
   const humidity = document.querySelector('.humidity')
   humidity.textContent = `Humidity: ${weatherData.current.humidity}`
   container.append(humidity)
+  // gif
+  getGif(weatherData.current.condition.text)
   // background color
   if (weatherData.current.temp_c <= 0) {
     document.body.style.backgroundColor = 'lightblue'
@@ -83,6 +85,13 @@ function displayData (weatherData) {
     document.body.style.backgroundColor = 'red'
     header.style.backgroundColor = 'orange'
   }
+}
+
+async function getGif (weather) {
+  const gif = document.querySelector('.gif')
+  const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=RTeO1mskzPgzkQ2h9hYJEP5Q1Yq1Gkw0&s=${weather}`, { mode: 'cors' })
+  const searchData = await response.json()
+  gif.src = searchData.data.images.original.url
 }
 
 initialize()

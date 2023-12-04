@@ -66,6 +66,23 @@ function displayData (weatherData) {
   const humidity = document.querySelector('.humidity')
   humidity.textContent = `Humidity: ${weatherData.current.humidity}`
   container.append(humidity)
+  // background color
+  if (weatherData.current.temp_c <= 0) {
+    document.body.style.backgroundColor = 'lightblue'
+    header.style.backgroundColor = 'cyan'
+  } else if (weatherData.current.temp_c <= 10 && weatherData.current.temp_c > 0) {
+    document.body.style.backgroundColor = 'lightgreen'
+    header.style.backgroundColor = 'lightblue'
+  } else if (weatherData.current.temp_c <= 20 && weatherData.current.temp_c > 10) {
+    document.body.style.backgroundColor = 'yellow'
+    header.style.backgroundColor = 'lightgreen'
+  } else if (weatherData.current.temp_c <= 30 && weatherData.current.temp_c > 20) {
+    document.body.style.backgroundColor = 'orange'
+    header.style.backgroundColor = 'yellow'
+  } else if (weatherData.current.temp_c > 30) {
+    document.body.style.backgroundColor = 'red'
+    header.style.backgroundColor = 'orange'
+  }
 }
 
 initialize()

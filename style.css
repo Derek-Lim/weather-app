@@ -5,11 +5,11 @@ body {
 
 header {
   display: flex;
-  background-color: lightblue;
   justify-content: space-around;
   font-size: xx-large;
   margin: -10px;
   padding: 20px;
+  border-bottom: 2px solid black;
 }
 
 form {

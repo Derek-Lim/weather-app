@@ -1,6 +1,7 @@
 async function initialize () {
   const form = document.querySelector('form')
   const input = document.querySelector('input')
+  const temp = document.querySelector('.temp')
 
   let response = await fetch('https://api.weatherapi.com/v1/current.json?key=0b98e2cd37f645f0980142451232811&q=silver spring', { mode: 'cors' })
   let weatherData = await response.json()
@@ -12,6 +13,18 @@ async function initialize () {
       weatherData = await response.json()
       displayData(weatherData)
     })()
+  })
+
+  temp.addEventListener('click', () => {
+    if (temp.classList.contains('f')) {
+      temp.textContent = `${weatherData.current.temp_c}°C`
+      temp.classList.remove('f')
+      temp.classList.add('c')
+    } else if (temp.classList.contains('c')) {
+      temp.textContent = `${weatherData.current.temp_f}°F`
+      temp.classList.remove('c')
+      temp.classList.add('f')
+    }
   })
 
   displayData(weatherData)
@@ -45,9 +58,10 @@ function displayData (weatherData) {
   img.src = weatherData.current.condition.icon
   container.append(img)
   // temperature f
-  const tempF = document.querySelector('.temp-f')
-  tempF.textContent = `${weatherData.current.temp_f}°F`
-  container.append(tempF)
+  const temp = document.querySelector('.temp')
+  temp.textContent = `${weatherData.current.temp_f}°F`
+  temp.classList.add('f')
+  container.append(temp)
   // humidity
   const humidity = document.querySelector('.humidity')
   humidity.textContent = `Humidity: ${weatherData.current.humidity}`

@@ -12,6 +12,13 @@ header {
   padding: 20px;
 }
 
+form {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .container {
   display: flex;
   flex-direction: column;
